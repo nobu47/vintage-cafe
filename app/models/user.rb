@@ -9,6 +9,7 @@ class User < ApplicationRecord
   has_many :posts
   has_many :favorites
   has_many :likes, through: :favorites, source: :post, dependent: :destroy
+  has_many :comments
   
   def favorite(post)
     favorites.find_or_create_by(post_id: post.id)

@@ -12,6 +12,6 @@ class FavoritesController < ApplicationController
     post = Post.find(params[:post_id])
     current_user.unfavorite(post)
     flash[:success] = 'お気に入りの登録を解除しました。'
-    redirect_to root_url  
+    redirect_back(fallback_location: root_path)
   end
 end

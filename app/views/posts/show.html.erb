@@ -14,6 +14,23 @@
         <% end %>
         <label><%= render 'favorites/favorite_button', post: @post %></label>
       </div>
+      <h4>コメント一覧</h4>
+      <ul>
+        <% @comments.each do |comment| %>
+          <%= link_to comment.user.name, user_path(comment.user) %> <span class="text-muted">posted at <%= comment.created_at %></span>
+          <li><%= comment.content %></li>
+          <% if current_user == comment.user %>
+            <p><%= link_to "コメントを削除する", [@post, comment], method: :delete, data: { confirm: "本当に削除してよろしいですか？" }, class: 'btn btn-danger btn-sm' %></p>
+          <% end %>
+        <% end %>
+      </ul>
+      <div>
+        <%= form_for [@post, @comment] do |f| %>
+          <%= f.text_field :content %>
+          <%= f.hidden_field :post_id, value: @post.id %>
+          <label><%= f.submit 'コメントする', class: "btn btn-primary" %></label>
+        <% end %>
+      </div> 
     </div>
   </li>
 </ul>

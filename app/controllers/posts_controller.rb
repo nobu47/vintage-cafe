@@ -8,6 +8,8 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    @comment = Comment.new
+    @comments = @post.comments.order(id: :desc).page(params[:page])
   end
 
   def new
@@ -29,7 +31,7 @@ class PostsController < ApplicationController
   def destroy
     @post.destroy
     flash[:success] = '投稿を削除しました。'
-    redirect_back(fallback_location: root_path)
+    redirect_to root_url
   end
   
   private
