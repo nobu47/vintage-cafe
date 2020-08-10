@@ -12,7 +12,7 @@
         <% if current_user == @post.user %>
           <%= link_to "この投稿を削除する", @post, method: :delete, data: { confirm: "本当に削除してよろしいですか？" }, class: 'btn btn-danger btn-sm' %>
         <% end %>
-        <label><%= render 'favorites/favorite_button', post: @post %></label>
+        <%= render 'favorites/favorite_button', post: @post %>
       </div>
       <h4>コメント一覧</h4>
       <ul>
