@@ -6,9 +6,9 @@
         <%= link_to @post.user.name, user_path(@post.user) %> <span class="text-muted">posted at <%= @post.created_at %></span>
       </div>
       <div>
-        <p><%= image_tag @post.image.url if @post.image? %></p>
+        <p><%= image_tag @post.image.url, :alt => '投稿写真' if @post.image? %></p>
       </div>
-      <div>
+      <div class='row'>
         <% if current_user == @post.user %>
           <%= link_to "この投稿を削除する", @post, method: :delete, data: { confirm: "本当に削除してよろしいですか？" }, class: 'btn btn-danger btn-sm' %>
         <% end %>
