@@ -10,6 +10,7 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     @comment = Comment.new
     @comments = @post.comments.order(id: :desc).page(params[:page])
+    counts(@post)
   end
 
   def new
