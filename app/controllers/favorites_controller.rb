@@ -5,7 +5,7 @@ class FavoritesController < ApplicationController
     post = Post.find(params[:post_id])
     current_user.favorite(post)
     flash[:success] = "この投稿をお気に入りに登録しました"
-    redirect_to post
+    redirect_back(fallback_location: root_path)
   end
 
   def destroy
