@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_action :correct_user, only: [:destroy]
-  before_action :require_user_logged_in, only: [:show]
+  before_action :require_user_logged_in, only: [:show, :new]
   
   def index
     @posts = Post.order(id: :desc).page(params[:page]).per(5)
@@ -47,6 +47,10 @@ class PostsController < ApplicationController
     unless @post
       redirect_to root_url
     end
+  end
+  
+  def counts(post)
+    @count_comments = post.comments.count
   end
   
 end

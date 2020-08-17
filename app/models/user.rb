@@ -5,8 +5,10 @@ class User < ApplicationRecord
                     format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i },
                     uniqueness: { case_sensitive: false }
   has_secure_password
+  validates :password, presence: true
   
-  has_many :posts
+  
+  has_many :posts, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :likes, through: :favorites, source: :post
   has_many :comments, dependent: :destroy
