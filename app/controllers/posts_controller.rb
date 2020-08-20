@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  #before_action :correct_user, only: [:destroy]
+  before_action :correct_user, only: [:destroy]
   before_action :require_user_logged_in, only: [:show, :new]
   
   def index
@@ -30,7 +30,6 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    @post = Post.find(params[:id])
     @post.destroy
     flash[:success] = '投稿を削除しました。'
     redirect_to root_url
